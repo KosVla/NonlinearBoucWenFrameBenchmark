@@ -37,7 +37,7 @@ ndim=6*numel(MODEL.nodes(:,1));
 %bw_k=k
 Input.bw_a = 0.10; Input.Alpha=1.0;
 Input.N=1; Input.Beta=3; Input.Gamma=2; Input.deltav = 0; Input.deltan=0;
-Input.bw_k = 1.62e08;
+Input.bw_k = 1.5e08;
 %Additional amplitude parameter for BW. Multiplies only hysteretic term to
 %magnify influence
 Input.AmpBW=1.0;
@@ -47,7 +47,7 @@ Input.u0=zeros(ndim,1); Input.v0=zeros(ndim,1); Input.a0=zeros(ndim,1);
 
 %Damping parameters
 %Rayleigh Damping with damping ratios (zetas) for the first two modes (OmegaIndexes)
-Input.zeta = [0.01 0.01]; Input.OmegaIndexes = [1 2]; 
+Input.zeta = [0.02 0.02]; Input.OmegaIndexes = [1 2]; 
 % See: GetRayleighDamping function to change this
 %If damping is left in comment the damping parameters of the Input file are
 %implemented!!!!!!
@@ -56,7 +56,7 @@ Input.zeta = [0.01 0.01]; Input.OmegaIndexes = [1 2];
 
 % Time integration parameters - Notation similar to SDOF benchmark (see description)
 fs = 100;              % working sampling frequency.
-upsamp = 2;            % upsampling factor to ensure integration accuracy.
+upsamp = 1;            % upsampling factor to ensure integration accuracy.
 fsint = fs*upsamp;     % integration sampling frequency.
 
 %% Excitation signal design. 
@@ -65,11 +65,11 @@ fsint = fs*upsamp;     % integration sampling frequency.
 method = 'sinus';   % Alternatives 'ExampleA' / 'ExampleB' / 'sinus'
 Angle=pi/4;         % Angle of motion. See ReadMe documentation for alternative definitions
 AmpF =1e5;            % Amplitude coefficient.
-P = 1;              % number of excitation periods.
+P = 3;              % number of excitation periods.
 N = 1000;           % number of points per period.
 
 fmin = 3;           % excitation bandwidth.
-fmax = 50;
+fmax = 20;
 
 [SynthesizedAccelerogram,lowpass] = ExcitationDesign(method,...
     AmpF, upsamp, P, N, fmin, fmax,fsint);
@@ -82,11 +82,11 @@ Input.Angle=Angle;
 
 %% Evaluate model
 [MODEL] = BoucWenRun(Input,MODEL);
-
+Input.SynthesizedAccelerogram(end+1)=0;
 %% Low-pass filtering and downsampling in case upsampling was employed
 % Software follows the notation in SDOF benchmark (see description)
 
-if lowpass==1
+if upsamp>1
     MODEL.Uups = MODEL.U;
     MODEL.U = Downsampling(MODEL.U,upsamp,P+1,N);
     MODEL.Vups = MODEL.V; MODEL.Aups = MODEL.A;
@@ -110,11 +110,10 @@ end
 % plot_model( MODEL, scale )
 
 %Plot time history
-ndof=1;
+[~,ndof]=max(max(abs(MODEL.U),[],2));
 plot(MODEL.U(ndof,:));
 
-
 %Plot hysterisis loop on one of the nonlinear links
-ndof=1;
+[~,ndof]=max(max(abs(MODEL.HistR),[],2));
 figure
 plot(MODEL.HistU(ndof, 1:(end-1)),MODEL.HistR(ndof,1:(end-1)),'-b');

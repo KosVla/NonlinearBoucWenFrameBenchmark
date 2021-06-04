@@ -17,20 +17,27 @@ function [alpha,beta,C] = GetRayleighDamping(Kstiff,Mmass,zeta,OmegaIndexes)
 % A local basis approximation approach for nonlinearparametric model order reduction,
 % Journal of Sound and Vibration, vol. 502, p. 116055, 2021.
 
-if nargin==3
-    no_modes=10;
-else
-    no_modes=max(OmegaIndexes)+2;
-end
+no_modes=10;
 
 [~,values] = eigs(Kstiff,Mmass,no_modes,'SM');
 Eig_values_mat=sort(diag(values));
 %Get natural frequencies
 Omegas = sqrt(Eig_values_mat);
 % Natural_freq_mat = Omegas/2/pi;
+condition = true;
+count=0;
+while condition
+    count=count+1;
+    condition = imag(Omegas(count))>0 || real(Omegas(count))<0.1;
+end
 
-Omega1 = Omegas(OmegaIndexes(1));
-Omega2 = Omegas(OmegaIndexes(2));
+if count==1
+    Omega1 = Omegas(OmegaIndexes(1));
+    Omega2 = Omegas(OmegaIndexes(2));
+else
+    Omega1 = Omegas(count);
+    Omega2 = Omegas(count+1);
+end
 
 if length(zeta)==1
     beta = 0;

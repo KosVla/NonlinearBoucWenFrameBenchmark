@@ -41,7 +41,7 @@ ndim=6*numel(MODEL.nodes(:,1));
 %bw_k=k
 Input.bw_a = 0.10; Input.Alpha=1.0;
 Input.N=1; Input.Beta=3; Input.Gamma=2; Input.deltav = 0; Input.deltan=0;
-Input.bw_k = 1e8;
+Input.bw_k = 6e7;
 %Additional amplitude parameter for BW. Multiplies only hysteretic term to
 %magnify influence
 Input.AmpBW=1.0;
@@ -51,7 +51,7 @@ Input.u0=zeros(ndim,1); Input.v0=zeros(ndim,1); Input.a0=zeros(ndim,1);
 
 %Damping parameters
 %Rayleigh Damping with damping ratios (zetas) for the first two modes (OmegaIndexes)
-Input.zeta = [0.01 0.01]; Input.OmegaIndexes = [1 2]; 
+Input.zeta = [0.02 0.02]; Input.OmegaIndexes = [1 2]; 
 % See: GetRayleighDamping function to change this
 %If damping is left in comment the damping parameters of the Input file are
 %implemented!!!!!!
@@ -61,21 +61,17 @@ Input.zeta = [0.01 0.01]; Input.OmegaIndexes = [1 2];
 
 % Time integration parameters - Notation similar to SDOF benchmark (see description)
 fs = 100;              % working sampling frequency.
-upsamp = 3;            % upsampling factor to ensure integration accuracy.
+upsamp = 1;            % upsampling factor to ensure integration accuracy.
 fsint = fs*upsamp;     % integration sampling frequency.
 Input.dt = 1/fsint;    % integration time step.
 
 
 %% Excitation signal design. 
 
-%Variable to control if lowpass filtering is needed after the integration
-%due to upsampling 
-lowpass=0;
-
 %Define excitation signal/ground motion acceleration and angle.
 %Two example inputs are provided for demonstration along with a multisine
 %constructor
-method = 'ExampleB'; % Alternatives 'ExampleA' / 'ExampleB' / 'sinus'
+method = 'sinus'; % Alternatives 'ExampleA' / 'ExampleB' / 'sinus'
 
 %If the user wants to define the input signal manually edit the following:
 %Input.SynthesizedAccelerogram = Input signal time history
@@ -107,14 +103,12 @@ switch method
         Input.Angle=pi/4; 
     otherwise
         %Multisine constructor - Notation similar to SDOF benchmark (see description)
-
-        lowpass=1;
         P = 2;                  % number of excitation periods.
         N = 1000;               % number of points per period.
         Nint = N*upsamp;        % number of points per period during integration.
 
-        fmin = 5;               % excitation bandwidth.
-        fmax = 50;
+        fmin = 3;               % excitation bandwidth.
+        fmax = 5;
         
         A = 1e5;                 % excitation amplitude coefficient.
         
@@ -145,33 +139,25 @@ MODELC = BoucWenRunSDOF(MODEL,Input);
 rmpath('coreBWSDOF')
 addpath core
 MODELV = BoucWenRun(Input,MODEL);
-
+Input.SynthesizedAccelerogram(end+1)=0;
 %% Low-pass filtering and downsampling in case upsampling was employed
 % Software follows the notation in SDOF benchmark (see description)
 
-if lowpass==1
-    drate = factor(upsamp);        % prime factor decomposition.
-    for r=1:size(MODELC.U,1)
-        y=MODELC.U(r,:);
-        y2=MODELV.U(r,:);
-        for k=1:length(drate)
-            y = decimate(y,drate(k),'fir');
-            y2 = decimate(y2,drate(k),'fir');
-        end
-        y = y(1:(P-1)*N);
-        y2 = y2(1:(P-1)*N);
-        MODELC.U(r,1:length(y))=y;
-        MODELV.U(r,1:length(y2))=y2;
-    end
-    MODELV.U(:,length(y)+1:end) = [];
-    MODELC.U(:,length(y)+1:end) = [];
+if upsamp>1
+    MODELV.Uups = MODELV.U;
+    MODELV.U = Downsampling(MODELV.U,upsamp,P,N);
+    MODELC.Uups = MODELC.U;
+    MODELC.U = Downsampling(MODELC.U,upsamp,P,N);
     f = downsample(f,upsamp);
-    
-    % Removal of the last simulated period to eliminate the edge effects due to the low-pass filter.
+    % Removal of the last simulated period to eliminate the edge effects
+    %due to the low-pass filter.
     f = f(1:(P-1)*N,:);
+    Input.SynthesizedAccelerogramUps=f;
+    Input.SynthesizedAccelerogram=f;
     P = P-1;
 end
 
+norm(MODELC.U(:)-MODELV.U(:))/norm(MODELV.U(:))
 %% Results visualization
 
 %Plot deformed state of frame
@@ -181,11 +167,11 @@ end
 % plot_model( MODEL, scale )
 
 %Plot time history
-ndof=1;
-plot(MODELC.U(ndof,:));
+[~,ndof]=max(max(abs(MODELV.U),[],2));
+plot(MODELV.U(ndof,:));
 
 
 %Plot hysterisis loop on one of the nonlinear links
-ndof=1;
+[~,ndof]=max(max(abs(MODELV.HistR),[],2));
 figure
 plot(MODELV.HistU(ndof, 1:(end-1)),MODELV.HistR(ndof,1:(end-1)),'-b');

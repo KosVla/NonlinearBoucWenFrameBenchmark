@@ -53,6 +53,7 @@ MODEL.HistU = MODEL.HistR;
 MODEL.nt=1; MODEL= assemble_nlBW( MODEL );
 MODEL= apply_bc_nl( MODEL );
 
+
 %Apply numerical correction for singular M
 test = diag(MODEL.M);
 m=min(test(test>0))/1000;

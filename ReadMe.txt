@@ -4,6 +4,7 @@ The MainScript* simulates the response of a frame under a dynamic excitation.
 Example Main Scripts:
 ExampleMainFile_AllPossibleInputs
 ExampleMainFile_Clean (clean version of the same input file)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 INPUT FILE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,7 +91,8 @@ The AutomaticMesh function generates the nodal coordinates and connectivity,
 along with the respective matrices for properties definition, for a user
 specified number of floors, frames in x, frames in y and the respective dimensions.
 This allows the user to create a frame based on their needs.
-The documentation of the function describes the input parameters in detail. 
+The documentation of the function describes the input parameters in detail.
+IT IS STILL UNDER DEVELOPMENT!!!! 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -212,9 +214,10 @@ Each row corresponds to a degree of freedom
 E.g. to find the first dof of link j you need to evaluate the following:
 (number of entries equal to 1 in MODEL.nl_link_flags)*(j-1)+1
 
-MODEL.U : Displacement Time histories
-MODEL.V : Velocities Time histories
-MODEL.A : Acceleration Time histories
+MODEL.U : Displacement Time histories (downsampled)
+MODEL.Uups : Displacement Time histories (upsampled)
+MODEL.V : Velocities Time histories (downsampled)
+MODEL.A : Acceleration Time histories (downsampled)
 
 MODEL.K : Stiffness matrix
 MODEL.M : Mass matrix

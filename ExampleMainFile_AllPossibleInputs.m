@@ -25,10 +25,10 @@ addpath InputFiles
 % MODEL = InputFileLinksFirst_DifferentBW();    %Model with different BC parameters for a link
 MODEL = InputFileLinksAll();                    %Links on all beams and columns
 
-ndim=6*numel(MODEL.nodes(:,1)); 
-
 %Plot undeformed state of the model and visualize beam orientation
 % plot_model( MODEL, 0 )
+
+ndim=6*numel(MODEL.nodes(:,1)); 
 
 
 %Define parametric dependencies
@@ -38,7 +38,7 @@ ndim=6*numel(MODEL.nodes(:,1));
 %bw_k=k
 Input.bw_a = 0.10; Input.Alpha=1.0;
 Input.N=1; Input.Beta=3; Input.Gamma=2; Input.deltav = 0; Input.deltan=0;
-Input.bw_k = 1.62e08;
+Input.bw_k = 1.62e8;
 %Additional amplitude parameter for BW. Multiplies only hysteretic term to
 %magnify influence
 Input.AmpBW=1.0;
@@ -48,7 +48,7 @@ Input.u0=zeros(ndim,1); Input.v0=zeros(ndim,1); Input.a0=zeros(ndim,1);
 
 %Damping parameters
 %Rayleigh Damping with damping ratios (zetas) for the first two modes (OmegaIndexes)
-Input.zeta = [0.01 0.01]; Input.OmegaIndexes = [1 2]; 
+Input.zeta = [0.02 0.02]; Input.OmegaIndexes = [1 2]; 
 % See: GetRayleighDamping function to change this
 %If damping is left in comment the damping parameters of the Input file are
 %implemented!!!!!!
@@ -58,15 +58,11 @@ Input.zeta = [0.01 0.01]; Input.OmegaIndexes = [1 2];
 
 % Time integration parameters - Notation similar to SDOF benchmark (see description)
 fs = 100;              % working sampling frequency.
-upsamp = 2;            % upsampling factor to ensure integration accuracy.
+upsamp = 1;            % upsampling factor to ensure integration accuracy.
 fsint = fs*upsamp;     % integration sampling frequency.
 Input.dt = 1/fsint;    % integration time step.
 
 %% Excitation signal design. 
-
-%Variable to control if lowpass filtering is needed after the integration
-%due to upsampling 
-lowpass=0;
 
 %Define excitation signal/ground motion acceleration and angle.
 %Two example inputs are provided for demonstration along with a multisine
@@ -83,7 +79,7 @@ switch method
     case 'ExampleA'
         load('ExampleA')
         
-        AmpF =3;               % Amplitude coefficient.
+        AmpF =10;               % Amplitude coefficient.
         Input.SynthesizedAccelerogram = AmpF*ExciteA;
         
         %Angle definition - Alternative possibilities
@@ -105,12 +101,12 @@ switch method
         %Multisine constructor - Notation similar to SDOF benchmark (see description)
 
         lowpass=1;
-        P = 1;                  % number of excitation periods.
+        P = 3;                  % number of excitation periods.
         N = 1000;               % number of points per period.
         Nint = N*upsamp;        % number of points per period during integration.
 
         fmin = 3;               % excitation bandwidth.
-        fmax = 4;
+        fmax = 10;
         
         A = 1e5;                 % excitation amplitude coefficient.
         
@@ -135,11 +131,11 @@ end
 
 %% Evaluate model
 [MODEL] = BoucWenRun(Input,MODEL);
-
+Input.SynthesizedAccelerogram(end+1)=0;
 %% Low-pass filtering and downsampling in case upsampling was employed
 % Software follows the notation in SDOF benchmark (see description)
 
-if lowpass==1
+if upsamp>1
     MODEL.Uups = MODEL.U;
     MODEL.U = Downsampling(MODEL.U,upsamp,P,N);
     MODEL.Vups = MODEL.V; MODEL.Aups = MODEL.A;
@@ -163,11 +159,11 @@ end
 % plot_model( MODEL, scale )
 
 %Plot time history
-ndof=1;
+[~,ndof]=max(max(abs(MODEL.U),[],2));
 plot(MODEL.U(ndof,:));
 
 
 %Plot hysterisis loop on one of the nonlinear links
-ndof=1;
+[~,ndof]=max(max(abs(MODEL.HistR),[],2));
 figure
 plot(MODEL.HistU(ndof, 1:(end-1)),MODEL.HistR(ndof,1:(end-1)),'-b');

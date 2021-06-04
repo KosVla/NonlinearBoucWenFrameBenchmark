@@ -12,8 +12,8 @@ function [ MODEL ] = newmark_nlBW_SDOF( MODEL )
 %			of the displacement, velocities and accelerations for every degree of freedom
 %Please cite as:
 % K. Vlachas, K. Tatsis, K. Agathos, A. Brink, and E. Chatzi,
-% â€œA local basis approximation approach for nonlinearparametric model order reduction,
-% â€?Journal of Sound and Vibration, vol. 502, p. 116055, 2021.
+% A local basis approximation approach for nonlinearparametric model order reduction,
+% Journal of Sound and Vibration, vol. 502, p. 116055, 2021.
 
 dt = MODEL.dyn.dt;
 MODEL.nt=1;

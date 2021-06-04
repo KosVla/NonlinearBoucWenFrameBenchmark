@@ -1,5 +1,6 @@
 function [MODEL] = AutomaticMesh(...
     NoOfFloors,NoOfFramesx,NoOfFramesy,dimensions)
+%UNDER DEVELOPMENT
 %Input file - Assembles the MODEL struct
 %Hysteretic links are located in all horizontal beams and columns. In the 
 %columns there is a link at the bottom and one at the top.
