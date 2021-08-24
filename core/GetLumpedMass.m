@@ -23,7 +23,7 @@ function [Mlumped] = GetLumpedMass(Mconsist, translational_dofs)
 diagonal_coeff = diag(Mconsist);
 
 %Compute total mass
-total_mass = sum(Mconsist,'all');
+total_mass = sum(sum(Mconsist));
 
 %Get number s of diagonal coefficients of translational dofs
 coeff_s = sum(diagonal_coeff(translational_dofs));

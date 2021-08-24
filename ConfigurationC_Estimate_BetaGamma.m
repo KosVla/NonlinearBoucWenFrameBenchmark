@@ -38,7 +38,7 @@ MODEL = InputFileLinksFirst(); ndim=6*numel(MODEL.nodes(:,1));
 %Bouc-Wen hysteresis model parameters - Notation follows description pdf
 %bw_a=a / Alpha=A / N=w / Beta=b / Gamma=g / deltav=dv / deltan=dnu
 %bw_k=k
-Input.bw_a = 0.10; Input.bw_k = 1e8; Input.Alpha=1.0;
+Input.bw_a = 0.10; Input.bw_k = 1e8; Input.Alpha=0.75;
 Input.N=1; Input.Beta=+30.87; Input.Gamma=-40.21; Input.deltav = 0; Input.deltan=0;
 
 %Additional amplitude parameter for BW.

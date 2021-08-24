@@ -25,6 +25,13 @@ addpath core
 % MODEL = InputFileLinksFirst_DifferentBW();    %Model with different BC parameters for a link
 MODEL = InputFileLinksAll();                    %Links on all beams and columns
 
+%Automatic Mesh examples
+%NoofFloors excludes the basement, so floors additional to the basement
+
+% Example structure same as InputFileLinksAll, node numbering is different!
+% NoOfFloors=1; NoOfFramesx=2; NoOfFramesy=1; dimensions=[7.50,5.0,3.2];
+% MODEL = AutomaticMesh(NoOfFloors,NoOfFramesx,NoOfFramesy,dimensions); 
+
 ndim=6*numel(MODEL.nodes(:,1)); 
 %Plot undeformed state of the model and visualize beam orientation
 % plot_model( MODEL, 0 )
@@ -37,7 +44,7 @@ ndim=6*numel(MODEL.nodes(:,1));
 %bw_k=k
 Input.bw_a = 0.10; Input.Alpha=1.0;
 Input.N=1; Input.Beta=3; Input.Gamma=2; Input.deltav = 0; Input.deltan=0;
-Input.bw_k = 1.5e08;
+Input.bw_k = 1.62e08;
 %Additional amplitude parameter for BW. Multiplies only hysteretic term to
 %magnify influence
 Input.AmpBW=1.0;

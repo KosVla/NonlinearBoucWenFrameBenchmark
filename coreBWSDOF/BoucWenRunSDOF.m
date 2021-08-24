@@ -33,7 +33,6 @@ tic;
 time=toc;
 MODEL.time=time;
 
-MODEL.Rmatrix(:,end+1)=0;
 if (isfield(MODEL,'nl_link_elements'))
     originaldofs = 6*(size(MODEL.nodes,1)-size(MODEL.nl_link_elements,1));
     MODEL.Uorig= MODEL.U(1:originaldofs,:);

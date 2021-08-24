@@ -1,8 +1,8 @@
 function [MODEL] = InputFileLinksAll()
 %Input file - Assembles the MODEL struct
-%Hysteretic links are located in all horizontal beams and columns of the
-%two-story frame. In the columns there is a link at the bottom and one at
-%the top.
+%Hysteretic links are located in all horizontal beams, on the top
+%of the basement columns and on the top and bottom of the first-floor
+%columns and columns of the two-story frame.
 %Returns:
 %  MODEL : struct / The MODEL struct contains all system properties, 
 %                   parameters and matrices. 

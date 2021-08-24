@@ -13,15 +13,16 @@ The input file offers the possibility to assemble nonlinear hysteretic links on 
 modeled after the Bouc Wen hysteresis formulation. There are also advanced possibilities for
 spring elements, plate elements etc. Going through the InputFile you will find that
 each matrix/section is explained in comments.
-There is a dedicated folder for input files:
+There is a dedicated folder for input files: InputFiles
+
 InputFileLinksFirst: BW links in all beam connections and the columns of the basement.
 In the columns the link is located at the top.
 InputFileLinksFirst_DifferentBW: BW links in all beam connections and the columns of the basement
 				and additionally demonstrates how to change the BW parameters of individual links
 InputFileLinksBeams: BW links only in beam connections.
 InputFileLinksAll: Hysteretic links are located in all horizontal 
-beams and columns of the two-story frame. In the columns there is a link 
-at the bottom and one at the top of the column.
+beams and the basement and first-story columns of the two-story frame.
+In the first story columns there is a link at the bottom and one at the top.
 
 The input file creates a MODEL struct with necessary parameters for the frame simulation.
 *The hysteretic parameter allocation is handled in the GetHystereticParams function!!!
@@ -85,15 +86,11 @@ MODEL.dyn.b : Rayleigh damping coefficient beta (Stiffness proportional)
 zeta ratios and the Omegas desired in the main file. If you don't give any zeta
 then alpha and beta are defined in the input file. 
 
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 The AutomaticMesh function generates the nodal coordinates and connectivity,
 along with the respective matrices for properties definition, for a user
 specified number of floors, frames in x, frames in y and the respective dimensions.
 This allows the user to create a frame based on their needs.
 The documentation of the function describes the input parameters in detail.
-IT IS STILL UNDER DEVELOPMENT!!!! 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Excitation and Initial conditions

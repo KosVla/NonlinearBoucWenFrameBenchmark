@@ -63,27 +63,35 @@ Input.dt = 1/fsint;    % integration time step.
 P = 5;                  % number of excitation periods.
 N = 12000;               % number of points per period.
 Nint = N*upsamp;        % number of points per period during integration.
-
-fmin = 5;               % excitation bandwidth.
-fmax = 50;
 Pfilter = 1;            % extra period to avoid edge effects during low-pass filtering (see line 59).
 P = P + Pfilter;
 fres = fsint/Nint;
 
-Psis = rand(10,1);
-As = rand(10,1);
-%As = zeros(10,1);
-%for w=1:10
-%    As(w)= (w-1)*0.10+ rand*0.10;
-%end
+%Amplitude range
+Ampls = [1.0e3 2.0e3];
+
+%Fmin range
+fmins = [2 5];
+%Fmax range
+fmaxs = [25 50];
+
+rng(58)
+As = rand(10,1); fs = rand(10,1); fsM = rand(10,1);
+
+Input.Angle= pi/4;
 
 Parameters = zeros(10,1);
 filename = 'ConfigurationC1_';
-RefAmp = 2e3;
+
+countHard=0; countEasy=0; countMedium=0;
+
 for w=1:10
-    A = RefAmp + As(w)*(1.50*RefAmp-RefAmp); % excitation amplitude.
-    Input.Angle= pi/4; 
-    fmin=w; rng(w*77);
+    % Excitation amplitude
+    A = Ampls(1) + As(w)*(Ampls(2) - Ampls(1)); 
+
+    %Excitation frequencies
+    fmin = fmins(1) + fs(w)*(fmins(2) - fmins(1)); 
+    fmax = fmaxs(1) + fsM(w)*(fmaxs(2) - fmaxs(1)); 
 
     Q = zeros(Nint,1);      % definition of the multisine excitation.
     exclines = 1:ceil(fmax/fres);
@@ -113,18 +121,29 @@ for w=1:10
     if sum(sum(isnan(MODELD.U)))==0 && sum(sum(isnan(MODELH.U)))==0
         Error = CheckErrorStruct(MODELH,MODELD);
 
-        Results.OutputU = sparse(MODELD.U); Results.OutputUH = sparse(MODELH.U);
-        Input.SynthesizedAccelerogram(2:end+1) = Input.SynthesizedAccelerogram(1:end);
-        Input.SynthesizedAccelerogram(1)=0; 
+        Results.OutputU = sparse(MODELD.U);
+        Results.OutputUH = sparse(MODELH.U);
         Input.SynthesizedAccelerogram = sparse(Input.SynthesizedAccelerogram);
         Results.Input = Input;
         Results.A = A; Results.fmin = fmin; Results.fmax = fmax;
+        
+        if Error.Norm<0.10
+            countHard=countHard+1;
+            filenamesave=strcat(filename, 'HardTask_No',int2str(countHard));            
+        elseif Error.Norm<0.20
+            countMedium=countMedium+1;
+            filenamesave=strcat(filename, 'MediumTask_No',int2str(countMedium));                
+        else
+            countEasy=countEasy+1;
+            filenamesave=strcat(filename, 'EasyTask_No',int2str(countEasy));                
+        end
+        
+%         filenamesave=strcat(filename, 'Simulation_No_',int2str(w));
+        save(filenamesave,'Results','-v7.3')
+        
         Parameters(w,1)=A; Parameters(w,2)=Input.Angle;
         Parameters(w,3)=fmin; Parameters(w,4)=Error.Norm; 
-        filenamesave=strcat(filename, 'SimulationNo_',int2str(w));
-        save(filenamesave,'Results','Parameters','-v7.3')
-    else
-        Parameters(w,1)=A; Parameters(w,2)=Input.Angle; Parameters(w,3)=fmin; Parameters(w,4)=0;          
     end
 end
-%save(filename,'-v7.3')
+save('Parameters1.mat','Parameters','-v7.3')
+

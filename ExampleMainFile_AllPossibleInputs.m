@@ -19,17 +19,25 @@ addpath InputFiles
 % Definition of input files for the analysis
 
 %Select Model 
-
 % MODEL = InputFileLinksBeams();                %Model with only horizontal beam links
 % MODEL = InputFileLinksFirst();                %Additional links on the basement columns
 % MODEL = InputFileLinksFirst_DifferentBW();    %Model with different BC parameters for a link
-MODEL = InputFileLinksAll();                    %Links on all beams and columns
+% MODEL = InputFileLinksAll();                    %Links on all beams and columns
+
+%Automatic Mesh examples
+%NoofFloors excludes the basement, so floors additional to the basement
+
+% Example structure same as InputFileLinksAll, node numbering is different!
+NoOfFloors=1; NoOfFramesx=2; NoOfFramesy=1; dimensions=[7.50,5.0,3.2];
+MODEL = AutomaticMesh(NoOfFloors,NoOfFramesx,NoOfFramesy,dimensions); 
+
+% Example structure 2
+% MODEL = AutomaticMesh(4,2,2,[7.50,5.0,3.2]); 
 
 %Plot undeformed state of the model and visualize beam orientation
 % plot_model( MODEL, 0 )
 
 ndim=6*numel(MODEL.nodes(:,1)); 
-
 
 %Define parametric dependencies
 
@@ -38,7 +46,7 @@ ndim=6*numel(MODEL.nodes(:,1));
 %bw_k=k
 Input.bw_a = 0.10; Input.Alpha=1.0;
 Input.N=1; Input.Beta=3; Input.Gamma=2; Input.deltav = 0; Input.deltan=0;
-Input.bw_k = 1.62e8;
+Input.bw_k = 1.62e6;
 %Additional amplitude parameter for BW. Multiplies only hysteretic term to
 %magnify influence
 Input.AmpBW=1.0;
@@ -67,7 +75,7 @@ Input.dt = 1/fsint;    % integration time step.
 %Define excitation signal/ground motion acceleration and angle.
 %Two example inputs are provided for demonstration along with a multisine
 %constructor
-method = 'sinus'; % Alternatives 'ExampleA' / 'ExampleB' / 'sinus'
+method = 'ExampleB'; % Alternatives 'ExampleA' / 'ExampleB' / 'sinus'
 
 %If the user wants to define the input signal manually edit the following:
 %Input.SynthesizedAccelerogram = Input signal time history
@@ -94,7 +102,7 @@ switch method
 
     case 'ExampleB'
         load('ExampleB')
-        AmpF =10;
+        AmpF =0.1;
         Input.SynthesizedAccelerogram = AmpF*ExciteB;
         Input.Angle=pi/4; 
     otherwise

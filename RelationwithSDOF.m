@@ -15,6 +15,7 @@
 
 %% Clear workspace and load folders
 clc;clear;
+rmpath('core')
 addpath coreBWSDOF
 addpath InputFiles
 
@@ -41,7 +42,7 @@ ndim=6*numel(MODEL.nodes(:,1));
 %bw_k=k
 Input.bw_a = 0.10; Input.Alpha=1.0;
 Input.N=1; Input.Beta=3; Input.Gamma=2; Input.deltav = 0; Input.deltan=0;
-Input.bw_k = 6e7;
+Input.bw_k = 1.62e8;
 %Additional amplitude parameter for BW. Multiplies only hysteretic term to
 %magnify influence
 Input.AmpBW=1.0;
@@ -98,7 +99,7 @@ switch method
 
     case 'ExampleB'
         load('ExampleB')
-        AmpF =15;
+        AmpF =0.10;
         Input.SynthesizedAccelerogram = AmpF*ExciteB;
         Input.Angle=pi/4; 
     otherwise
@@ -139,7 +140,7 @@ MODELC = BoucWenRunSDOF(MODEL,Input);
 rmpath('coreBWSDOF')
 addpath core
 MODELV = BoucWenRun(Input,MODEL);
-Input.SynthesizedAccelerogram(end+1)=0;
+
 %% Low-pass filtering and downsampling in case upsampling was employed
 % Software follows the notation in SDOF benchmark (see description)
 

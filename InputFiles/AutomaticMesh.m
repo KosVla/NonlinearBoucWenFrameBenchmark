@@ -1,6 +1,5 @@
 function [MODEL] = AutomaticMesh(...
     NoOfFloors,NoOfFramesx,NoOfFramesy,dimensions)
-%UNDER DEVELOPMENT
 %Input file - Assembles the MODEL struct
 %Hysteretic links are located in all horizontal beams and columns. In the 
 %columns there is a link at the bottom and one at the top.
@@ -143,14 +142,31 @@ for w = 1:(length(NodeNumbersLxBeams)/2)
     k = size(BeamElements,1);
     BeamElements(k+1,:) = [NodeNumbersLxBeams(2*w-1) NodeNumbersLxBeams(2*w)];   
 end
+%Apply correction for beam orientation purposes
+beamn = NoOfFramesx*(NoOfFramesy+1);
+for r = (NoOfFloors+1):-1:1    
+    indexs = size(BeamElements,1)-beamn*r+NoOfFramesx+1;
+    indexstop = indexs+beamn-NoOfFramesx-1;
+    temp = BeamElements(indexs:indexstop,1);
+    BeamElements(indexs:indexstop,1) = BeamElements(indexs:indexstop,2);
+    BeamElements(indexs:indexstop,2) =temp;
+end
+
 for w = 1:(length(NodeNumbersLyBeams)/2)
     k = size(BeamElements,1);
     BeamElements(k+1,:) = [NodeNumbersLyBeams(2*w-1) NodeNumbersLyBeams(2*w)];   
 end
-
+%Apply correction for beam orientation purposes
+beamn = NoOfFramesy*(NoOfFramesx+1);
+for r = (NoOfFloors+1):-1:1    
+    indexs = size(BeamElements,1)-beamn*r+1;
+    indexstop = indexs + NoOfFramesy -1;
+    temp = BeamElements(indexs:indexstop,1);
+    BeamElements(indexs:indexstop,1) = BeamElements(indexs:indexstop,2);
+    BeamElements(indexs:indexstop,2) =temp;
+end
 
 %Nonlinear links connectivity
-
 %Start of hysteretic links - Ground
 nl_link_elements = [NodeNumbersLinkGrounds' (1:planenodes)'];
 
@@ -160,12 +176,12 @@ nl_link_elements(k+1:k+planenodes,:)=...
     [NodeNumbersLinkBasementColumns' (planenodes+1:2*planenodes)'];
 
 %Links at the basis and the top of the floor columns
-for r = 1:NoOfFloors
+for r = 1:(NoOfFloors)
     k = size(nl_link_elements,1);
     nl_link_elements(k+1:k+planenodes,:) =...
         [(r*planenodes+1:(r+1)*planenodes)' NodeNumbersBasis{r}'];
     nl_link_elements(k+planenodes+1:k+2*planenodes,:) =...
-        [NodeNumbersTop{r}' (r*planenodes+1:(r+1)*planenodes)'];
+        [NodeNumbersTop{r}' ((r+1)*planenodes+1:(r+2)*planenodes)'];
 end
 
 %Links at the lx beams
@@ -177,15 +193,28 @@ for r = 1:(NoOfFloors+1)
         for m=1:(NoOfFramesx+1)
             k = size(nl_link_elements,1);
             countf=countf+1;
-            if m==1 
+            if m==1
                 count=count+1;
-                nl_link_elements(k+1,:)=[floornodes(countf) NodeNumbersLxBeams(count)];
+                if t==1                    
+                    nl_link_elements(k+1,:)=[floornodes(countf) NodeNumbersLxBeams(count)];
+                else
+                    nl_link_elements(k+1,:)=[NodeNumbersLxBeams(count) floornodes(countf)];
+                end
             elseif m==NoOfFramesx+1
                 count=count+1;
-                nl_link_elements(k+1,:)=[NodeNumbersLxBeams(count) floornodes(countf)];                
+                if t==1
+                    nl_link_elements(k+1,:)=[NodeNumbersLxBeams(count) floornodes(countf)];                
+                else
+                    nl_link_elements(k+1,:)=[floornodes(countf) NodeNumbersLxBeams(count)];
+                end
             else
-                nl_link_elements(k+1,:)=[NodeNumbersLxBeams(count+1) floornodes(countf)];
-                nl_link_elements(k+2,:)=[floornodes(countf) NodeNumbersLxBeams(count+2)];
+                if t==1
+                    nl_link_elements(k+1,:)=[NodeNumbersLxBeams(count+1) floornodes(countf)];
+                    nl_link_elements(k+2,:)=[floornodes(countf) NodeNumbersLxBeams(count+2)];
+                else
+                    nl_link_elements(k+1,:)=[floornodes(countf) NodeNumbersLxBeams(count+1)];
+                    nl_link_elements(k+2,:)=[NodeNumbersLxBeams(count+2) floornodes(countf)];
+                end                   
                 count=count+2;
             end    
         end
@@ -201,18 +230,34 @@ for r = 1:(NoOfFloors+1)
         for m=1:(NoOfFramesy+1)
             k = size(nl_link_elements,1);
             countf=countf+1;
-            if m==1 
+            if m==1
                 count=count+1;
-                nl_link_elements(k+1,:)=...
-                    [floornodes((m-1)*(NoOfFramesx+1)+t) NodeNumbersLyBeams(count)];
+                if t==1
+                    nl_link_elements(k+1,:)=...
+                        [NodeNumbersLyBeams(count) floornodes((m-1)*(NoOfFramesx+1)+t)];                    
+                else
+                    nl_link_elements(k+1,:)=...
+                        [floornodes((m-1)*(NoOfFramesx+1)+t) NodeNumbersLyBeams(count)];
+                end
             elseif m==NoOfFramesy+1
                 count=count+1;
-                nl_link_elements(k+1,:)=...
-                    [NodeNumbersLyBeams(count) floornodes((m-1)*(NoOfFramesx+1)+t)];                
+                if t==1
+                    nl_link_elements(k+1,:)=...
+                        [floornodes((m-1)*(NoOfFramesx+1)+t) NodeNumbersLyBeams(count)];                    
+                else
+                    nl_link_elements(k+1,:)=...
+                        [NodeNumbersLyBeams(count) floornodes((m-1)*(NoOfFramesx+1)+t)];
+                end
             else
-                nl_link_elements(k+1,:)=...
-                    [NodeNumbersLyBeams(count+1) floornodes((m-1)*(NoOfFramesx+1)+t)];
-                nl_link_elements(k+2,:)=[floornodes((m-1)*(NoOfFramesx+1)+t) NodeNumbersLyBeams(count+2)];
+                if t==1
+                    nl_link_elements(k+1,:)=...
+                        [floornodes((m-1)*(NoOfFramesx+1)+t) NodeNumbersLyBeams(count+1)];
+                    nl_link_elements(k+2,:)=[NodeNumbersLyBeams(count+2) floornodes((m-1)*(NoOfFramesx+1)+t)];                                       
+                else
+                    nl_link_elements(k+1,:)=...
+                        [NodeNumbersLyBeams(count+1) floornodes((m-1)*(NoOfFramesx+1)+t)];
+                    nl_link_elements(k+2,:)=[floornodes((m-1)*(NoOfFramesx+1)+t) NodeNumbersLyBeams(count+2)];                    
+                end                
                 count=count+2;
             end    
         end
@@ -227,8 +272,11 @@ MODEL.nl_link_elements = nl_link_elements;
 nodal_displacements = zeros(length(NodeNumbersLinkGrounds), 13);
 nodal_displacements(:,1) = NodeNumbersLinkGrounds;
 nodal_displacements(:,2:7)=1;
-
 MODEL.nodal_displacements = nodal_displacements;
+% nodal_displacementsz = zeros(planenodes, 13);
+% nodal_displacementsz(:,1) = 1:planenodes;
+% nodal_displacementsz(:,2:4)=1;
+% MODEL.nodal_displacements = [nodal_displacementsz; nodal_displacements];
                          
 %Steel
 E = 210e09; nee = 0.30; rho = 8000;

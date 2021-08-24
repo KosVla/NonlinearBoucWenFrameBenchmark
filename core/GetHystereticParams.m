@@ -85,6 +85,5 @@ MODEL.Rmatrix = Fmatrix;
 [~,pos]=max(F);
 MODEL.pos=pos;
 
-
 end
 

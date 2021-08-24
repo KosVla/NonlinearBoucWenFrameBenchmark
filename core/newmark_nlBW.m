@@ -42,10 +42,10 @@ a1M = a1*M; a4C = a4*C;
 
 Fmatrix = MODEL.Rmatrix;
 fnorm=norm(Fmatrix(:,MODEL.pos));
-f0=Fmatrix(:,1);
-
 v0 = MODEL.V(:,1);
+
 if sum(MODEL.A(:,1))==0
+    f0=Fmatrix(:,1);
     a0 = M\(f0-MODEL.K*MODEL.U(:,1)-C*v0);
     MODEL.A(:,1) = a0;
 else
@@ -57,9 +57,9 @@ uik = uk;
 
 vk = v0; ak = a0; 
 tol=1e-3; maxit = 20;
-for i=1:(size(Fmatrix,2))
+for i=1:(size(Fmatrix,2)-1)
     
-    fi = Fmatrix(:,i);
+    fi = Fmatrix(:,i+1);
         
     va1 = a2*vk+a3*ak;
     va2 = a5*vk+a6*ak;
