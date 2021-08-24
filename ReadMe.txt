@@ -1,6 +1,6 @@
 ReadMe file for orientation purposes 
 
-The MainScript* simulates the response of a frame under a dynamic excitation.
+The MainScript* simulates the response of the two-story benchmark frame under a dynamic excitation.
 Example Main Scripts:
 ExampleMainFile_AllPossibleInputs
 ExampleMainFile_Clean (clean version of the same input file)
