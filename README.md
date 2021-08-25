@@ -6,9 +6,9 @@ The software implementation of a two-story frame with Bouc-Wen hysteretic links 
 The implementation of the software aims to be utilized as a benchmark problem to validate methods and tools in structural health monitoring, model reduction, or identification applications. The proposed benchmark is provided as a framework simulator and not a single function, thus offering full flexibility for the user to modify and evaluate the shear frame based on customized needs and requirements of the underlying problem. For this reason, the frame is excited using a parametrized ground motion excitation, created through a stochastic signal, the Bouc-Wen model is parametrized, and the software offers extension possibilities such as multi-story frame assembly, deterioration or degradation phenomena, and localized damage representation. All these possibilities are documented in the description provided. 
 
 The main branch contains the description of the case study, along with a welcome *ReadMe*.
-The standardized MATLAB implementation is provided in the Version0.0_Matlab branch, along with a dedicated *ReadMe* file documenting the coding scripts and the subdirectories of the repository. In this branch the files used to simulate the standardized datasets are also provided, along with an additional *ReadMe* documenting the configuration files.
+The standardized MATLAB implementation is provided in the *Version0.0_Matlab* branch, along with a dedicated *ReadMe* file documenting the coding scripts and the subdirectories of the repository. In this branch the files used to simulate the standardized datasets are also provided, along with an additional *ReadMe* documenting the configuration files.
 
-An example python implementation of the framework is also provided in the Version0.0_Python branch, along with a dedicated *ReadMe* file.
+An example python implementation of the framework is also provided in the *Version0.0_Python* branch, along with a dedicated *ReadMe* file.
 
 The additional branches provide updated or modified versions of the software. Each branch contains a dedicated *ReadMe* file documenting the adjustments compared to the standardized version.
 
