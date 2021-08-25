@@ -41,7 +41,7 @@ Compared to the existing Bouc-Wen oscillator benchmark featured in the nonlinear
 
 [4]  T. Simpson,  N. Dervilis,  and E. Chatzi,  “A machine learning approach to model order reduction of nonlinear systems via autoencoder and LSTM networks,” Journal of Engineering Mechanics, (Forthcoming)
 
-[5] J. P. Noel and M. Schoukens, “Hysteretic benchmark with a dynamic nonlinearity,” in Workshop on nonlinear system identification benchmarks, 2016, pp. 7–14.
+[5] J. P. Noël and M. Schoukens, “Hysteretic benchmark with a dynamic nonlinearity,” in Workshop on nonlinear system identification benchmarks, 2016, pp. 7–14.
 
 [6] R. Bouc, “A mathematical model for hysteresis,” Acustica (in French), vol. 24, pp. 16–25, 1971.
 
