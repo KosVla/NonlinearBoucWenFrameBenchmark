@@ -9,11 +9,11 @@ The implementation of the software aims to be utilized as a benchmark problem to
 
 The **main** branch contains the description of the case study, along with a welcome *ReadMe* file.
 
-The standardized MATLAB implementation is provided in the ** Version0.0_Matlab ** branch, along with a dedicated *ReadMe* file documenting the coding scripts and the subdirectories of the repository. In this branch the files used to simulate the standardized datasets are also provided, along with an additional *ReadMe* documenting the configuration files.
+The standardized MATLAB implementation is provided in the **Version0.0_Matlab** branch, along with a dedicated *ReadMe* file documenting the coding scripts and the subdirectories of the repository. In this branch the files used to simulate the standardized datasets are also provided, along with an additional *ReadMe* documenting the configuration files.
 
-An example python implementation of the framework is also provided in the ** Version0.0_Python ** branch, along with a dedicated *ReadMe* file.
+An example python implementation of the framework is also provided in the **Version0.0_Python** branch, along with a dedicated *ReadMe* file.
 
-Any additional branches provide updated or modified versions of the software. Each branch contains a dedicated *ReadMe* file documenting the adjustments compared to the standardized version. For example, the  ** Version1.0_Matlab ** branch contains a modified frame with hysteretic links assembled only on the rotational degrees of freedom and coupled bending-to-shear coupling to represent a shear frame under earthquake excitation in a more realistic way.
+Any additional branches provide updated or modified versions of the software. Each branch contains a dedicated *ReadMe* file documenting the adjustments compared to the standardized version. For example, the  **Version1.0_Matlab** branch contains a modified frame with hysteretic links assembled only on the rotational degrees of freedom and coupled bending-to-shear coupling to represent a shear frame under earthquake excitation in a more realistic way.
 
 ## Features
 
@@ -25,7 +25,7 @@ Any additional branches provide updated or modified versions of the software. Ea
 * Parametric dynamic response and parametrized Bouc-Wen links
 * Multi-story extension possible through automatic input file creation function  
 * Simulation of localized phenomena
-* Standardized datasets for tasks related to system identification applications, reduced-order or surrogate modelling applications.
+* Standardized datasets for tasks related to system identification applications, reduced-order or surrogate modelling applications
 
 ## Motivation
 A diverse variety of engineering and dynamic systems, ranging from control applications and solid mechanics to biology and economics, feature hysteretic phenomena. This commonly encountered nonlinear behavior can be captured and described via diverse numerical models, with the Bouc-Wen representation comprising a common choice within the nonlinear dynamics and vibration engineering community. In this benchmark, the Bouc-Wen model is employed to characterize the response of the nodal connections of a two-story frame structure. The resulting shear frame with hysteretic links is proposed as a multi-degree of freedom nonlinear response simulator.
