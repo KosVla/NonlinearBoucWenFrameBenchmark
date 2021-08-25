@@ -33,7 +33,7 @@ The provided simulator can be utilized as a benchmark problem to validate method
 Compared to the existing Bouc-Wen oscillator benchmark featured in the nonlinear benchmark website, described in detail in [5], the proposed multi-degree of freedom simulator allows for increased complexity studies due to the higher dimensionality of the system and the potential for multi-parametric numerical examples. In addition, the proposed benchmark is provided as a framework simulator and not a single function, thus offering full flexibility for the user to modify and evaluate the shear frame based on customized needs and requirements of the underlying problem.
 
 ## References
-[1] J.P. Noel, M. Schoukens, and K. Tiels, “Nonlinear benchmarks,” https://sites.google.com/view/nonlinear-benchmark/.
+[1] J.P. Noël, M. Schoukens, and K. Tiels, “Nonlinear benchmarks,” https://sites.google.com/view/nonlinear-benchmark/.
 
 [2] K. Vlachas, K. Tatsis, K. Agathos, A. R. Brink, and E. Chatzi, “A physics-based, local POD basis approach for multi-parametric reduced order models,” in International Conference on Noise and Vibration Engineering (ISMA2020) in conjunction with the 8th International Conference on Uncertainty in Structural Dynamics (USD 2020).
 
