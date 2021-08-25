@@ -13,7 +13,7 @@ The standardized MATLAB implementation is provided in the **Version0.0_Matlab** 
 
 An example python implementation of the framework is also provided in the **Version0.0_Python** branch, along with a dedicated *ReadMe* file.
 
-Any additional branches provide updated or modified versions of the software. Each branch contains a dedicated *ReadMe* file documenting the adjustments compared to the standardized version. For example, the  **Version1.0_Matlab** branch contains a modified frame with hysteretic links assembled only on the rotational degrees of freedom and coupled bending-to-shear coupling to represent a shear frame under earthquake excitation in a more realistic way.
+Any additional branches provide updated or modified versions of the software. Each branch contains a dedicated *ReadMe* file documenting the adjustments compared to the standardized version. For example, the  **Version1.0_Matlab** branch contains a modified frame with hysteretic links assembled only on the rotational degrees of freedom and bending-to-shear coupling to represent a shear frame under earthquake excitation in a more realistic way. All corresponding modifications are documented on the respective *ReadMe* files of the branch.
 
 ## Features
 
