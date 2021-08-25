@@ -12,6 +12,18 @@ An example python implementation of the framework is also provided in the *Versi
 
 The additional branches provide updated or modified versions of the software. Each branch contains a dedicated *ReadMe* file documenting the adjustments compared to the standardized version.
 
+## Features
+
+* Multi degree of freedom nonlinear response simulator
+* Hysteretic behavior of connections through Bouc-Wen links
+* Degradation and deterioration phenomena
+* Stochastic ground motion excitation
+* User-input excitation (signal) possible
+* Parametric dynamic response and parametrized Bouc-Wen links
+* Multi-story extension possible through automatic input file creation function  
+* Simulation of localized phenomena
+* Standardized datasets for tasks related to system identification applications, reduced-order or surrogate modelling applications.
+
 ## Motivation
 A diverse variety of engineering and dynamic systems, ranging from control applications and solid mechanics to biology and economics, feature hysteretic phenomena. This commonly encountered nonlinear behavior can be captured and described via diverse numerical models, with the Bouc-Wen representation comprising a common choice within the nonlinear dynamics and vibration engineering community. In this benchmark, the Bouc-Wen model is employed to characterize the response of the nodal connections of a two-story frame structure. The resulting shear frame with hysteretic links is proposed as a multi-degree of freedom nonlinear response simulator.
 
@@ -23,17 +35,17 @@ Compared to the existing Bouc-Wen oscillator benchmark featured in the nonlinear
 ## References
 [1] J.P. Noel, M. Schoukens, and K. Tiels, “Nonlinear benchmarks,” https://sites.google.com/view/nonlinear-benchmark/.
 
-[2] K. Vlachas, K. Tatsis, K. Agathos, A. R. Brink, and E. Chatzi, “A physics-based, local POD basis approach formulti-parametric reduced order models,” in International Conference on Noise and Vibration Engineering (ISMA2020) in conjunction with the 8th International Conference on Uncertainty in Structural Dynamics (USD 2020).ETH Zurich, Environmental and Geomatic Engineering, 2020.
+[2] K. Vlachas, K. Tatsis, K. Agathos, A. R. Brink, and E. Chatzi, “A physics-based, local POD basis approach for multi-parametric reduced order models,” in International Conference on Noise and Vibration Engineering (ISMA2020) in conjunction with the 8th International Conference on Uncertainty in Structural Dynamics (USD 2020).
 
-[3] K. Vlachas, K. Tatsis, K. Agathos, A. Brink, and E. Chatzi, “A local basis approximation approach for nonlinearparametric model order reduction,”Journal of Sound and Vibration, vol. 502, p. 116055, 2021.
+[3] K. Vlachas, K. Tatsis, K. Agathos, A. Brink, and E. Chatzi, “A local basis approximation approach for nonlinear parametric model order reduction,” Journal of Sound and Vibration, vol. 502, p. 116055, 2021.
 
 [4]  T. Simpson,  N. Dervilis,  and E. Chatzi,  “A machine learning approach to model order reduction of nonlinear systems via autoencoder and LSTM networks,” Journal of Engineering Mechanics, (Forthcoming)
 
-[5] J. P. No ̈el and M. Schoukens, “Hysteretic benchmark with a dynamic nonlinearity,” in Workshop on nonlinearsystem identification benchmarks, 2016, pp. 7–14.
+[5] J. P. No{ ̈e}l and M. Schoukens, “Hysteretic benchmark with a dynamic nonlinearity,” in Workshop on nonlinear system identification benchmarks, 2016, pp. 7–14.
 
-[6] R. Bouc, “A mathematical model for hysteresis (Mod`ele math`ematique d’hyst`er`esis: application aux syst`emes`aun degr`e de libert`e),” Acustica (in French), vol. 24, pp. 16–25, 1971.
+[6] R. Bouc, “A mathematical model for hysteresis,” Acustica (in French), vol. 24, pp. 16–25, 1971.
 
-[7] R. Bouc, “Forced vibrations of mechanical systems with hysteresis,”Proc. of the Fourth Conference on Nonlinear Oscillations, Prague, 1967.
+[7] R. Bouc, “Forced vibrations of mechanical systems with hysteresis,” Proc. of the Fourth Conference on Nonlinear Oscillations, Prague, 1967.
 
 [8] Y.-K. Wen, “Method for random vibration of hysteretic systems,” Journal of the engineering mechanics division,vol. 102, no. 2, pp. 249–263, 1976.
 
@@ -46,14 +58,4 @@ Compared to the existing Bouc-Wen oscillator benchmark featured in the nonlinear
 ## Description
 The attached description document provides a detailed description of the proposed multi-degree of freedom nonlinear response simulator. User guidelines for proper input and accurate simulations are also provided, along with a detailed overview of the capabilities of the provided software. This serves as a short overview of the user to treat the proposed benchmark as a fully adjustable case study. The challenges associated with performing nonlinear system identification in the featured benchmark are discussed and standardized system identification tasks related to the benchmark along with the respective provided datasets are proposed. 
 
-## Features
-
-* Multi degree of freedom nonlinear response simulator
-* Hysteretic behavior of connections through Bouc-Wen links
-* Degradation and deterioration phenomena
-* Stochastic ground motion excitation
-* User-input excitation (signal) possible
-* Parametric dynamic response and parametrized Bouc-Wen links
-* Multi-story extension possible through automatic input file creation function  
-* Simulation of localized phenomena
-* Standardized datasets for tasks related to system identification applications, reduced-order or surrogate modelling applications. 
+ 
