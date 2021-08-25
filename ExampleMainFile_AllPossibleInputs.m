@@ -139,7 +139,7 @@ end
 
 %% Evaluate model
 [MODEL] = BoucWenRun(Input,MODEL);
-Input.SynthesizedAccelerogram(end+1)=0;
+
 %% Low-pass filtering and downsampling in case upsampling was employed
 % Software follows the notation in SDOF benchmark (see description)
 
