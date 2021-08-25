@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Changes to standardized version (Version0)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Modified Features:
+-Bouc-Wen links are activated only on the rotational degrees of freedom
+-Bending and shear degrees of freedom are now coupled
+-The option to assemble the Bouc-Wen bw_k coefficient from the EI coefficient
+of the respective beam element is provided
+
+Corresponding Changes:
+
+-The input files have been modified to accomodate both the assembly of only
+rotational springs and the modified boundary conditions implementation.
+
+-The degrees of freedom not activated in the hysteretic links assume a linear
+behavior modeled based on the maximum stiffness coefficient of the K matrix.
+
+-An initial example of bending and shear coupling is provided, 
+modeled based on beam equilibrium assumptions
+
+-The option to assemble the Bouc-Wen spring bw_k coefficient from the EI 
+coefficient of the neighbouring beam is included in the main file
+(Input.BWkfromMAT=true option)
+
+-Modified boundary conditions implementation by deleting bounded degrees of
+freedom in the respective matrices + modified definition to make sure 
+spring assembly is consistent
+
+-A modified implementation of excitation for consistency purposes by
+applying loads only on beam degrees of freedom (and not virtual dofs).
+
+
+PS:
+In postprocessing you need to check the proper dof to visualize the 
+hysteresis curve as not all spring dofs are activated
