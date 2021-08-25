@@ -22,15 +22,25 @@ Compared to the existing Bouc-Wen oscillator benchmark featured in the nonlinear
 
 ## References
 [1] J.P. Noel, M. Schoukens, and K. Tiels, “Nonlinear benchmarks,” https://sites.google.com/view/nonlinear-benchmark/.
+
 [2] K. Vlachas, K. Tatsis, K. Agathos, A. R. Brink, and E. Chatzi, “A physics-based, local POD basis approach formulti-parametric reduced order models,” in International Conference on Noise and Vibration Engineering (ISMA2020) in conjunction with the 8th International Conference on Uncertainty in Structural Dynamics (USD 2020).ETH Zurich, Environmental and Geomatic Engineering, 2020.
+
 [3] K. Vlachas, K. Tatsis, K. Agathos, A. Brink, and E. Chatzi, “A local basis approximation approach for nonlinearparametric model order reduction,”Journal of Sound and Vibration, vol. 502, p. 116055, 2021.
+
 [4]  T. Simpson,  N. Dervilis,  and E. Chatzi,  “A machine learning approach to model order reduction of nonlinear systems via autoencoder and LSTM networks,” Journal of Engineering Mechanics, (Forthcoming)
+
 [5] J. P. No ̈el and M. Schoukens, “Hysteretic benchmark with a dynamic nonlinearity,” in Workshop on nonlinearsystem identification benchmarks, 2016, pp. 7–14.
+
 [6] R. Bouc, “A mathematical model for hysteresis (Mod`ele math`ematique d’hyst`er`esis: application aux syst`emes`aun degr`e de libert`e),” Acustica (in French), vol. 24, pp. 16–25, 1971.
+
 [7] R. Bouc, “Forced vibrations of mechanical systems with hysteresis,”Proc. of the Fourth Conference on Nonlinear Oscillations, Prague, 1967.
+
 [8] Y.-K. Wen, “Method for random vibration of hysteretic systems,” Journal of the engineering mechanics division,vol. 102, no. 2, pp. 249–263, 1976.
+
 [9] F. Ikhouane and J. Rodellar, Systems with hysteresis: analysis, identification and control using the Bouc-Wen model.    John Wiley & Sons, 2007.
+
 [10] M. Ismail, F. Ikhouane, and J. Rodellar, “The hysteresis bouc-wen model, a survey,” Archives of Computational Methods in Engineering, vol. 16, no. 2, pp. 161–188, 2009.
+
 [11] T. T. Baber and Y.-K. Wen, “Random vibration of hysteretic, degrading systems,” Journal of the Engineering Mechanics Division, vol. 107, no. 6, pp. 1069–1087, 1981.
 
 ## Description
