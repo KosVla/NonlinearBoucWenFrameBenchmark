@@ -67,4 +67,16 @@ Compared to the existing Bouc-Wen oscillator benchmark featured in the nonlinear
 ## Description
 The attached description document provides a detailed description of the proposed multi-degree of freedom nonlinear response simulator. User guidelines for proper input and accurate simulations are also provided, along with a detailed overview of the capabilities of the provided software. This serves as a short overview of the user to treat the proposed benchmark as a fully adjustable case study. The challenges associated with performing nonlinear system identification in the featured benchmark are discussed and standardized system identification tasks related to the benchmark along with the respective provided datasets are proposed. 
 
- 
+## Cite
+
+If you use this nonlinear Bouc-Wen benchmark for academic research, you are encouraged to cite the following paper:
+
+@article{vlachas2021local,
+  title={A local basis approximation approach for nonlinear parametric model order reduction},
+  author={Vlachas, Konstantinos and Tatsis, Konstantinos and Agathos, Konstantinos and Brink, Adam R and Chatzi, Eleni},
+  journal={Journal of Sound and Vibration},
+  volume={502},
+  pages={116055},
+  year={2021},
+  publisher={Elsevier}
+}
