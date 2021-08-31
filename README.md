@@ -71,6 +71,7 @@ The attached description document provides a detailed description of the propose
 
 If you use this nonlinear Bouc-Wen benchmark for academic research, you are encouraged to cite the following paper:
 
+```
 @article{vlachas2021local,
   title={A local basis approximation approach for nonlinear parametric model order reduction},
   author={Vlachas, Konstantinos and Tatsis, Konstantinos and Agathos, Konstantinos and Brink, Adam R and Chatzi, Eleni},
@@ -80,3 +81,4 @@ If you use this nonlinear Bouc-Wen benchmark for academic research, you are enco
   year={2021},
   publisher={Elsevier}
 }
+```
