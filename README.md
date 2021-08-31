@@ -70,40 +70,12 @@ The attached description document provides a detailed description of the propose
 ## Works where the benchmark is featured
 
 Previous versions of the benchmark simulator are featured in the following works:
-```
-@article{simpson2021machine,
-  title={Machine Learning Approach to Model Order Reduction of Nonlinear Systems via Autoencoder and LSTM Networks},
-  author={Simpson, Thomas and Dervilis, Nikolaos and Chatzi, Eleni},
-  journal={Journal of Engineering Mechanics},
-  volume={147},
-  number={10},
-  pages={04021061},
-  year={2021},
-  publisher={American Society of Civil Engineers}
-}
-```
 
-```
-@article{vlachas2021local,
-  title={A local basis approximation approach for nonlinear parametric model order reduction},
-  author={Vlachas, Konstantinos and Tatsis, Konstantinos and Agathos, Konstantinos and Brink, Adam R and Chatzi, Eleni},
-  journal={Journal of Sound and Vibration},
-  volume={502},
-  pages={116055},
-  year={2021},
-  publisher={Elsevier}
-}
-```
+Simpson, Thomas, Nikolaos Dervilis, and Eleni Chatzi. "Machine Learning Approach to Model Order Reduction of Nonlinear Systems via Autoencoder and LSTM Networks." Journal of Engineering Mechanics 147, no. 10 (2021): 04021061.
 
-```
-@inproceedings{vlachas2020physics,
-  title={A physics-based, local POD basis approach for multi-parametric reduced order models},
-  author={Vlachas, Konstantinos and Tatsis, Konstantinos and Agathos, Konstantinos and Brink, Adam R and Chatzi, Eleni},
-  booktitle={International Conference on Noise and Vibration Engineering (ISMA 2020) in conjunction with the 8th International Conference on Uncertainty in Structural Dynamics (USD 2020)},
-  year={2020},
-  organization={ETH Zurich, Environmental and Geomatic Engineering}
-}
-```
+Vlachas, Konstantinos, Konstantinos Tatsis, Konstantinos Agathos, Adam R. Brink, and Eleni Chatzi. "A local basis approximation approach for nonlinear parametric model order reduction." Journal of Sound and Vibration 502 (2021): 116055.
+
+Vlachas, Konstantinos, Konstantinos Tatsis, Konstantinos Agathos, Adam R. Brink, and Eleni Chatzi. "A physics-based, local POD basis approach for multi-parametric reduced order models." In International Conference on Noise and Vibration Engineering (ISMA 2020) in conjunction with the 8th International Conference on Uncertainty in Structural Dynamics (USD 2020). ETH Zurich, Environmental and Geomatic Engineering, 2020.
 
 ## Cite
 
