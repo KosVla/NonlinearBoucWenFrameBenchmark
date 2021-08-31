@@ -57,29 +57,29 @@ InputD.zeta = [0.02 0.02]; InputD.OmegaIndexes = [1 2];
 fs = 150;              % working sampling frequency.
 upsamp = 1;            % upsampling factor to ensure integration accuracy.
 fsint = fs*upsamp;     % integration sampling frequency.
-Input.dt = 1/fsint;    % integration time step.
+InputD.dt = 1/fsint;    % integration time step.
 
 %% Excitation signal design. 
 
 P = 5;                  % number of excitation periods.
-N = 4000;               % number of points per period.
+N = 12000;               % number of points per period.
 Nint = N*upsamp;        % number of points per period during integration.
 Pfilter = 1;            % extra period to avoid edge effects during low-pass filtering (see line 59).
 P = P + Pfilter;
 fres = fsint/Nint;
 
 %Amplitude range
-Ampls = [1.0e3 2.0e3];
+Ampls = [1.5e3 2.5e3];
 
 %Fmin range
 fmins = [2 5];
 %Fmax range
 fmaxs = [25 50];
 
-rng(96)
+rng(97)
 As = rand(10,1); fs = rand(10,1); fsM = rand(10,1);
 
-Input.Angle= pi/4;
+InputD.Angle= pi/4;
 
 Parameters = zeros(10,1);
 filename = 'ConfigurationD1_';
@@ -120,26 +120,25 @@ for w=1:10
 
         Results.OutputU = sparse(MODELD.U);
         Results.OutputUH = sparse(MODELH.U);
-        Input.SynthesizedAccelerogram = sparse(Input.SynthesizedAccelerogram);
-        Results.Input = Input;
+        InputD.SynthesizedAccelerogram = sparse(InputD.SynthesizedAccelerogram); InputH.SynthesizedAccelerogram = sparse(InputH.SynthesizedAccelerogram);
+        Results.InputD = InputD; Results.InputH = InputH;
         Results.A = A; Results.fmin = fmin; Results.fmax = fmax;
         
         if Error.Norm<0.10
             countHard=countHard+1;
-            filenamesave=strcat(filename, 'HardTask_No',int2str(countHard));            
+            filenamesave=strcat(filename, 'HardTask_No',int2str(countHard),'_',int2str(100*Error.Norm));            
         elseif Error.Norm<0.20
             countMedium=countMedium+1;
-            filenamesave=strcat(filename, 'MediumTask_No',int2str(countMedium));                
+            filenamesave=strcat(filename, 'MediumTask_No',int2str(countMedium),'_',int2str(100*Error.Norm));                
         else
             countEasy=countEasy+1;
-            filenamesave=strcat(filename, 'EasyTask_No',int2str(countEasy));                
+            filenamesave=strcat(filename, 'EasyTask_No',int2str(countEasy),'_',int2str(100*Error.Norm));               
         end
         
-%         filenamesave=strcat(filename, 'Simulation_No_',int2str(w));
         save(filenamesave,'Results','-v7.3')
         
-        Parameters(w,1)=A; Parameters(w,2)=Input.Angle;
-        Parameters(w,3)=fmin; Parameters(w,4)=Error.Norm; 
+        %Parameters(w,1)=A; Parameters(w,2)=Input.Angle;
+        %Parameters(w,3)=fmin; Parameters(w,5)=fmax; Parameters(w,4)=Error.Norm; 
+        %save('Parameters1.mat','Parameters','-v7.3')
     end
 end
-save('Parameters1.mat','Parameters','-v7.3')
