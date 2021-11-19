@@ -1,0 +1,5 @@
+History log with updates with respect to Version_0.0
+
+19.11.2021
+-Corrected bug related to the update of the Bouc-Wen history struct.
+The files related were the newmark_nlBW and the assemble_nlBW.

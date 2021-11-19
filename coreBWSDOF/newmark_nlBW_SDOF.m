@@ -89,11 +89,15 @@ for i=1:(size(Fmatrix,2)-1)
         nit = nit+1;
     end
     
-    if (Rnorm<tol*fnorm) 
+    if (Rnorm<tol*fnorm)
+        if nit>0
+            MODEL.nl_link_hist=MODEL.nl_link_histtemp;
+        end
         if (mod(i,500)==0)
             fprintf('Step %i converged after %i iterations, residual %f \n', i,nit, Rnorm/fnorm);
         end
     else
+        MODEL.nl_link_hist=MODEL.nl_link_histtemp;
         fprintf('Step %i did not converge after %i iterations, residual %f \n', i,nit, Rnorm/fnorm);
     end
     

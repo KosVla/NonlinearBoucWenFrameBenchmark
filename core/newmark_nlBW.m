@@ -94,11 +94,15 @@ for i=1:(size(Fmatrix,2)-1)
         nit = nit+1;
     end
     
-    if (Rnorm<tol*fnorm) 
+    if (Rnorm<tol*fnorm)
+        if nit>0
+            MODEL.HistBW=MODEL.HistBWtemp;
+        end
         if (mod(i,1000)==0)
             fprintf('Step %i converged after %i iterations, residual %f \n', i,nit, Rnorm/fnorm);
         end
     else
+        MODEL.HistBW=MODEL.HistBWtemp;
         fprintf('Step %i did not converge after %i iterations, residual %f \n', i,nit, Rnorm/fnorm);
     end
     

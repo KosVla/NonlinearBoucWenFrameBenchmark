@@ -114,7 +114,7 @@ DofsLoop=Properties(:,1:2);
 link_properties = Properties(:,3:end);
 
 [ Rs,Ks, HIST ] = bw_Ndall( MODEL.u, DofsLoop, HIST, link_properties );
-MODEL.HistBW = HIST;
+MODEL.HistBWtemp = HIST;
 MODEL.HistR(:,nt)=Rs; MODEL.HistU(:,nt)=HIST.Um;
 
 Fnl =sparse( [DofsLoop(:,1); DofsLoop(:,2)], ones(size(DofsLoop,1)*2,1), [Rs; -Rs], ndof, 1);

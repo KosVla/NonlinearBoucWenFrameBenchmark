@@ -30,6 +30,7 @@ MODEL.K = sparse(ndof,ndof);
 MODEL.M = sparse(ndof,ndof);
 MODEL.fint = zeros(ndof,1);
 MODEL.f = zeros(ndof,1);
+MODEL.nl_link_histtemp = MODEL.nl_link_hist;
 
 condition=false;
 if (isfield(MODEL,'u')==0)
@@ -125,7 +126,7 @@ for e=1:n_links
     
     [finte, Ke, link_hist] = link_residual_stiffness(ue, link_properties, link_hist);
     
-    MODEL.nl_link_hist{e,:} = link_hist;
+    MODEL.nl_link_histtemp{e,:} = link_hist;
     MODEL.HistR((e-1)*6+1:e*6,nt)=finte(1:6);
     MODEL.HistU((e-1)*6+1:e*6,nt)=ue(1:6)-ue(7:12);
 
