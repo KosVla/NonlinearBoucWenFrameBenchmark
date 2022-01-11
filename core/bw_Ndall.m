@@ -62,6 +62,6 @@ r = HIST.R + Amp.*HystereticTerm + LinearTerm;
 HIST.R = r;
 HIST.Um = HIST.Um + Dxi;
 HIST.Zeta = zetaprior+dzeta;
-HIST.E = HIST.E+ dzeta.*Dxi;
+HIST.E = HIST.E+ zetaprior.*Dxi;
 
 end
