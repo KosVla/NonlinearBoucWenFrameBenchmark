@@ -45,5 +45,5 @@ r = hist.rj + par.Amp*HystereticTerm + LinearTerm;
 hist.rj = r;
 hist.uj = hist.uj + dxi;
 hist.zeta = zetaprior+dzeta;
-hist.E = hist.E+ dzeta*dxi;
+hist.E = hist.E+ zetaprior*dxi;
 end
