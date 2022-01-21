@@ -1,6 +1,6 @@
 History log with updates with respect to Version_0.0
 
-11,01,2022
+11.01.2022
 -Corrected bug related to the computation of the energy term inside the Bouc-Wen function.
 
 19.11.2021
