@@ -65,6 +65,6 @@ k(a==1) = link_properties(a==1,end);
 HIST.R = r;
 HIST.Um = HIST.Um + Dxi;
 HIST.Zeta = zetaprior+dzeta;
-HIST.E = HIST.E+ dzeta.*Dxi;
+HIST.E = HIST.E+ zetaprior.*Dxi;
 
 end

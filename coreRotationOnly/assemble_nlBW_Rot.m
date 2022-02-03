@@ -131,7 +131,7 @@ if MODEL.BWkfromMAT
 end
 
 [ Rs,Ks, HIST ] = bw_Ndall( MODEL.u, DofsLoop, HIST, link_properties );
-
+MODEL.HistBWtemp = HIST;
 rows = [ DofsLoop(:,1); DofsLoop(:,1); DofsLoop(:,2); DofsLoop(:,2) ];
 columns = [ DofsLoop(:,1); DofsLoop(:,2); DofsLoop(:,1); DofsLoop(:,2) ];
 
@@ -166,7 +166,7 @@ Knl =sparse( rows, columns, values, ndof, ndof);
 
 MODEL.K = MODEL.K + Knl + KnlC + KnlCC;
   
-MODEL.HistBW = HIST;
+
 MODEL.HistR(:,nt)=Rs; MODEL.HistU(:,nt)=HIST.Um;
 
 Fnl =sparse( [DofsLoop(:,1); DofsLoop(:,2)], ones(size(DofsLoop,1)*2,1), [Rs; -Rs], ndof, 1);
