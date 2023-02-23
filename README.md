@@ -84,8 +84,20 @@ Vlachas, Konstantinos, Konstantinos Tatsis, Konstantinos Agathos, Adam R. Brink,
 
 ## Cite
 
-If you use this nonlinear Bouc-Wen benchmark for academic research, you are encouraged to cite the following paper:
+If you use the algorithmic framework presented here you are kindly requested to cite the following work(s):
 
+```
+@inproceedings{vlachas2021two,
+  title={Two-story frame with Bouc-Wen hysteretic links as a multi-degree of freedom nonlinear response simulator},
+  author={Vlachas, Konstantinos and Agathos, Konstantinos and Tatsis, Konstantinos E and Brink, Adam R and Chatzi, Eleni},
+  booktitle={5th Workshop on Nonlinear System Identification Benchmarks (2021)},
+  pages={6},
+  year={2021}
+}
+```
+}
+
+Further sources which can be of interest include:
 ```
 @article{vlachas2021local,
   title={A local basis approximation approach for nonlinear parametric model order reduction},
@@ -95,5 +107,29 @@ If you use this nonlinear Bouc-Wen benchmark for academic research, you are enco
   pages={116055},
   year={2021},
   publisher={Elsevier}
+}
+```
+
+```
+@article{simpson2021machine,
+  title={Machine learning approach to model order reduction of nonlinear systems via autoencoder and LSTM networks},
+  author={Simpson, Thomas and Dervilis, Nikolaos and Chatzi, Eleni},
+  journal={Journal of Engineering Mechanics},
+  volume={147},
+  number={10},
+  pages={04021061},
+  year={2021},
+  publisher={American Society of Civil Engineers}
+}
+```
+
+```
+@inproceedings{vlachas2022coupling,
+  title={On the coupling of reduced order modeling with substructuring of structural systems with component nonlinearities},
+  author={Vlachas, Konstantinos and Tatsis, Konstantinos and Agathos, Konstantinos and Brink, Adam R and Quinn, Dane and Chatzi, Eleni},
+  booktitle={Dynamic Substructures, Volume 4: Proceedings of the 39th IMAC, A Conference and Exposition on Structural Dynamics 2021},
+  pages={35--43},
+  year={2022},
+  organization={Springer}
 }
 ```
