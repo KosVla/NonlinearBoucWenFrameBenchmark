@@ -1,0 +1,13 @@
+message: "If you decide to use this software for your research, please cite it as follows:"
+authors:
+- family-names: "Vlachas"
+  given-names: "Konstantinos"
+  orcid: "https://orcid.org/0000-0002-9124-219X"
+- family-names: "Chatzi"
+  given-names: "Eleni"
+  orcid: "https://orcid.org/0000-0002-6870-240X"
+title: "Two-story frame with Bouc-Wen hysteretic links as a multi-degree of freedom nonlinear response simulator: Code Repository"
+version: 0.0
+doi: https://doi.org/10.3929/ethz-b-000522473
+date-released: 2021
+url: "https://github.com/KosVla/NonlinearBoucWenFrameBenchmark"
