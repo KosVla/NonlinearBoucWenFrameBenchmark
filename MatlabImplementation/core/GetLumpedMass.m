@@ -18,7 +18,6 @@ function [Mlumped] = GetLumpedMass(Mconsist, translational_dofs)
 % A local basis approximation approach for nonlinearparametric model order reduction,
 % Journal of Sound and Vibration, vol. 502, p. 116055, 2021.
 
-
 %Extract diagonal coefficients of M consistent
 diagonal_coeff = diag(Mconsist);
 

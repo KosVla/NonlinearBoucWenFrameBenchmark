@@ -91,7 +91,7 @@ MODEL.nodes = [0  0  0          %1
                0 ly 2*lz        %69
                0 0 2*lz         %70
                ];
-
+MODEL.originaldofs=18;
 % Definition of beam elements
 % The first element of each row corresponds to the beam element type:
 % 0 -> normal beam element (the only one provided in this template)

@@ -12,14 +12,14 @@ addpath core
 
 %% Define Input
 % Definition of input files for the analysis
-% MODEL = InputFileLinksBeams();    
+MODEL = InputFileLinksBeams();    
 % MODEL = InputFileLinksFirst_DifferentBW();    
 % MODEL = InputFileLinksFirst();    
 % MODEL = InputFileLinksAll();
 % MODEL= AutomaticMesh(3,2,2,[5.0, 4.0 ,3.0]);
 
 % Plot undeformed state of the model and visualize beam orientation
-plot_model( MODEL, 0 )
+% plot_model( MODEL, 0 )
 
 % Initial conditions (displacements/velocities)
 Input.u0=zeros(MODEL.ndim,1); Input.v0=zeros(MODEL.ndim,1); 
@@ -27,7 +27,7 @@ Input.u0=zeros(MODEL.ndim,1); Input.v0=zeros(MODEL.ndim,1);
 % Damping parameters (MODEL.dyn.a, MODEL.dyn.b)
 % Default: Rayleigh damping with coefficients defined in Input file.
 % Customized: Define damping ratios (zetas) & mode number (OmegaIndexes)
-MODEL.zeta = [0.02 0.02]; MODEL.OmegaIndexes = [1 2]; 
+% MODEL.zeta = [0.02 0.02]; MODEL.OmegaIndexes = [1 2]; 
 
 %% Define Bouc-Wen parameters
 

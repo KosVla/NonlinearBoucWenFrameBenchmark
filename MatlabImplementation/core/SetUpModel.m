@@ -34,8 +34,8 @@ MODEL= apply_bc_nl( MODEL );
 
 Kstiff = MODEL.K(MODEL.freedofs,MODEL.freedofs);
 Mmass = MODEL.M(MODEL.freedofs,MODEL.freedofs);
-if (isfield(InputParams,'zeta')~=0)
-    [MODEL.dyn.a,MODEL.dyn.b] = GetRayleighDamping(Kstiff,Mmass,InputParams.zeta,InputParams.OmegaIndexes);
+if (isfield(MODEL,'zeta')~=0)
+    [MODEL.dyn.a,MODEL.dyn.b] = GetRayleighDamping(Kstiff,Mmass,MODEL.zeta,MODEL.OmegaIndexes);
 end
 MODEL.C = MODEL.dyn.a *  MODEL.M + MODEL.dyn.b * MODEL.K;
 
