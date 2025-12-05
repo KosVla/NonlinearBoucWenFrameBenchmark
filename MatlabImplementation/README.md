@@ -36,13 +36,14 @@ This benchmark multi degree of freedom simulator evaluates the numerical respons
 
 ## Usage
 
-The main workflow consists of:
+The main file is named `Main_ExampleEarthquakes.m` workflow and consists of:
 
-1. **Define the structural model** via a dedicated input file
-2. **Set the Bouc-Wen parameters for the hysteretic links**
-3. **Specify excitation** 
-4. **Run time integration**
-5. **Extract and visualize results**
+1. **Defining the structural model** via a dedicated input file
+2. **Setting the Bouc-Wen parameters for the hysteretic links**
+3. **Specifing the excitation** 
+4. **Running time integration**
+5. **Extracting and visualizing results**
+
 
 ### Input File & MODEL Struct Reference
 
@@ -602,6 +603,7 @@ Input.angle                    % Scalar in [rad], angle with x-axis
 **Important Notes:**
 - Earthquake forces are applied only to real structural nodes, not virtual nodes.
 - Lumped mass is computed from the unmodified consistent mass matrix (`MODEL.Mall`).
+- Three example earthquake accelerograms are supported. The user can use a custom on by modifying Input.SynthesizedAccelerogram and defining the corresponding dynamic analysis parameters.
 
 ## Citation
 
@@ -624,7 +626,7 @@ If you use this code in your research, please cite:
 
 ## License
 
-[Specify your license here - e.g., MIT, GPL, Apache 2.0, etc.]
+Apache-2.0 license
 
 ---
 
