@@ -48,5 +48,3 @@ Plot_TH_Response(Results["Accelerations"], Forcing.time, title="Acceleration Res
 Plot_TH_Response(Results["OriginalDisps"], Forcing.time, title="Displacement Response")
 Plot_Hysteretic_Curve(Results["HystereticU"], Results["HystereticR"])
 Plot_Phase_Space(Results["Displacements"], Results["Velocities"])
-
-print(ARK)

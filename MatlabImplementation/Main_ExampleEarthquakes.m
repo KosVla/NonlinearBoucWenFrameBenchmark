@@ -12,9 +12,9 @@ addpath core
 
 %% Define Input
 % Definition of input files for the analysis
-MODEL = InputFileLinksBeams();    
+% MODEL = InputFileLinksBeams();    
 % MODEL = InputFileLinksFirst_DifferentBW();    
-% MODEL = InputFileLinksFirst();    
+MODEL = InputFileLinksFirst();    
 % MODEL = InputFileLinksAll();
 % MODEL= AutomaticMesh(3,2,2,[5.0, 4.0 ,3.0]);
 

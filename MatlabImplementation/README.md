@@ -220,8 +220,8 @@ The Bouc-Wen model captures rate-independent hysteretic behavior. A detailed des
 | `Beta` | β | Hysteretic shape parameter |
 | `Gamma` | γ | Hysteretic shape parameter |
 | `N` | n | Smoothness exponent | 
-| `deltav` | δ_ν | Strength deterioration rate | ≥ 0 |
-| `deltan` | δ_η | Stiffness degradation rate | ≥ 0 |
+| `deltav` | δ_ν | Strength deterioration rate |
+| `deltan` | δ_η | Stiffness degradation rate |
 
 #### `MODEL.nl_link_flags`
 **Type:** Matrix ∈ {0,1}^(n_links × 6)
@@ -639,7 +639,7 @@ For questions, bug reports, or feature requests:
 - **Email:** vlachas@ibk.baug.ethz.ch
 ---
 
-**Repository:** 
+**Repository:** https://github.com/KosVla/NonlinearBoucWenFrameBenchmark
 
 **Last Updated:** December 2025
 
