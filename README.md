@@ -40,7 +40,6 @@ Vlachas, Konstantinos, et al. "Reduced Order Modeling conditioned on monitored f
 Kamariotis, Antonios, et al. "On the consistent classification and treatment of uncertainties in structural health monitoring applications." ASCE-ASME Journal of Risk and Uncertainty in Engineering Systems, Part B: Mechanical Engineering 11.1 (2025): 011108.[DOI](https://doi.org/10.1115/1.4067140)
 
 
-
 ## Cite
 
 If you use the algorithmic framework presented here you are kindly requested to cite the following work(s):
